@@ -1,50 +1,94 @@
 # PMAU Studying Hub
 
-A simple study hub designed to help students review course materials, practice quizzes, and prepare for exams.
+A beginner-friendly, static university study hub built with HTML, CSS, and vanilla JavaScript.
 
-## Features
+## Files
 
-- **Multiple Courses** — Organize courses in one place.
-- **Interactive Quizzes** — Answer multiple-choice and true/false questions.
-- **Bilingual Content** — Support for English and Arabic questions and explanations.
-- **Instant Feedback** — Review answers and explanations while practicing.
-- **Study Progress** — Practice course topics at your own pace.
-- **Responsive Design** — Access the hub on desktop and mobile devices.
+- `index.html` — the page shell.
+- `css/style.css` — all visual design and responsive styling.
+- `js/data.js` — **the only file you normally edit to add courses, quizzes, and questions**.
+- `js/app.js` — the reusable course and quiz engine. You usually do not need to edit it.
 
-## Project Structure
+## Run it
 
-- `index.html` — Main page of the study hub.
-- `style.css` — Website styles and themes.
-- `script.js` — Main website functionality.
-- `data.js` — Shared course and quiz data, if used.
-- `math001.js` — Math001 course content.
-- `eng001.js` — English course content.
+For a quick preview, open `index.html` in a modern browser. If your browser blocks local file behavior, use a simple static server or upload the folder to Netlify / GitHub Pages.
 
-*Your actual file structure may vary.*
+## Add a course
 
-## Getting Started
+Open `js/data.js`. Inside `window.PMAU_COURSES`, add another course object, separated from the previous course by a comma:
 
-1. Download or clone the project.
-2. Open the project folder.
-3. Open `index.html` in your browser, or use a local development server if required.
-4. Select a course and start studying.
+```js
+{
+  id: "ENGL101",
+  title: { en: "English", ar: "اللغة الإنجليزية" },
+  description: { en: "English practice", ar: "تدريبات اللغة الإنجليزية" },
+  icon: "A",
+  accent: "#7c3aed",
+  tint: "#f0eaff",
+  quizzes: []
+}
+```
 
-## Adding Courses and Quizzes
+Use a unique `id` for each course. The `id` appears on its course card.
 
-Course content is stored in JavaScript files. Each course can contain multiple quizzes, and each quiz can include questions, answer options, correct answers, and explanations.
+## Add a quiz
 
-Follow the existing data structure when adding or editing content.
+Inside the course's `quizzes` array, add an object like this:
 
-## Technologies
+```js
+{
+  id: "math001-homework-2",
+  title: { en: "Homework 2", ar: "الواجب الثاني" },
+  description: { en: "Practice set 2", ar: "مجموعة تدريبية ثانية" },
+  typeLabel: { en: "Multiple choice", ar: "اختيار من متعدد" },
+  questionMode: "one",
+  feedbackMode: "both",
+  timerMinutes: 10,
+  shuffleQuestions: false,
+  shuffleOptions: false,
+  showExplanations: true,
+  questions: [
+    {
+      type: "mcq",
+      question: { en: "What is 5 + 7?", ar: "كم يساوي 5 + 7؟" },
+      options: [
+        { en: "10", ar: "10" },
+        { en: "11", ar: "11" },
+        { en: "12", ar: "12" },
+        { en: "13", ar: "13" }
+      ],
+      answer: "12",
+      explanation: { en: "5 + 7 = 12.", ar: "5 + 7 = 12." }
+    },
+    {
+      type: "truefalse",
+      question: { en: "7 is an even number.", ar: "العدد 7 زوجي." },
+      options: [
+        { en: "True", ar: "صحيح" },
+        { en: "False", ar: "خطأ" }
+      ],
+      answer: "False",
+      explanation: { en: "7 is odd.", ar: "العدد 7 فردي." }
+    }
+  ]
+}
+```
 
-- HTML
-- CSS
-- JavaScript
+### Settings you can change
 
-## Purpose
+- `feedbackMode`: `"instant"`, `"end"`, or `"both"`.
+- `timerMinutes`: a number; use `0` for no timer.
+- `shuffleQuestions`: `true` or `false`.
+- `shuffleOptions`: `true` or `false`.
+- `showExplanations`: `true` or `false`.
+- `questionMode`: keep `"one"` for one question at a time.
 
-PMAU Studying Hub is a learning project intended to make studying more organized, accessible, and interactive.
+**Important:** for answer checking, each question's `answer` must exactly match the English `en` value of the correct option. Keep question IDs unique within a course, and quiz IDs unique within that course.
 
----
+## Student data and privacy
 
-**Note:** This project is a student study aid and is not an official university website unless explicitly authorized.
+This project does not use a server or database. Scores and attempts are stored in local browser storage on each device. They do not follow a student to another device or browser and may be lost if browser storage is cleared. Course and answer data are part of the public website files; do not use this design for confidential exam material.
+
+## Publishing
+
+Upload the complete folder structure to any static host. Do not move `style.css`, `data.js`, or `app.js` unless you also update their paths in `index.html`.

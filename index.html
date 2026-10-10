@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101b2d">
+  <meta name="description" content="PMAU Studying Hub — a shared university practice and quiz hub.">
+  <title>PMAU Studying Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+   <script src="js/math001.js" defer></script>
+   <script src="js/eng001.js" defer></script>
+     <script src="js/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" id="brandHome" aria-label="PMAU Studying Hub home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span class="brand-copy"><strong>PMAU</strong><small>STUDYING HUB</small></span>
+      </a>
+      <div class="top-actions">
+        <button class="icon-button" id="languageToggle" type="button" aria-label="Switch language">العربية</button>
+        <button class="icon-button theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode"><span id="themeIcon">☾</span></button>
+      </div>
+    </header>
+
+    <main id="appMain" tabindex="-1">
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow" data-i18n="eyebrow">YOUR UNIVERSITY, YOUR PACE</span>
+          <h1 data-i18n="heroTitle">Make every study session count.</h1>
+          <p data-i18n="heroText">A focused space to practice, track your progress, and feel more prepared for your exams.</p>
+          <div class="hero-stats">
+            <div><strong id="courseCount">0</strong><span data-i18n="coursesLabel">Courses</span></div>
+            <div><strong id="quizCount">0</strong><span data-i18n="quizzesLabel">Practice quizzes</span></div>
+            <div><strong id="attemptCount">0</strong><span data-i18n="attemptsLabel">Attempts completed</span></div>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="art-card art-card-main"><span class="art-icon">✦</span><span class="art-line wide"></span><span class="art-line"></span><div class="art-progress"><i></i></div></div>
+          <div class="art-chip chip-top">✓ &nbsp; Keep going</div>
+          <div class="art-chip chip-bottom">✎ &nbsp; Learn by doing</div>
+        </div>
+      </section>
+
+      <section class="section-heading">
+        <div><span class="eyebrow" data-i18n="workspace">YOUR WORKSPACE</span><h2 data-i18n="coursesTitle">Explore your courses</h2><p data-i18n="coursesSubtitle">Choose a course to find its practice quizzes.</p></div>
+        <label class="search-wrap"><span aria-hidden="true">⌕</span><input id="courseSearch" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="Search courses..." autocomplete="off"></label>
+      </section>
+
+      <section id="courseGrid" class="course-grid" aria-live="polite"></section>
+      <div id="emptyCourses" class="empty-state hidden"><span>⌕</span><h3 data-i18n="noCourses">No courses found</h3><p data-i18n="trySearch">Try another search term.</p></div>
+      <footer class="footer"><span>© <span id="year"></span> PMAU Studying Hub</span><span data-i18n="footerNote">Built for focused learning.</span></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
